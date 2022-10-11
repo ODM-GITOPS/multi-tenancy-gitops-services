@@ -1,0 +1,79 @@
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "260"
+  name: norootsquash
+  namespace: kube-system
+  labels:
+    app: norootsquash
+    tier: management
+spec:
+  selector:
+    matchLabels:
+      name: norootsquash
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: norootsquash
+    spec:
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: cpregistrysecret
+      hostPID: true
+      schedulerName: default-scheduler
+      hostNetwork: true
+      terminationGracePeriodSeconds: 30
+      securityContext: {}
+      containers:
+        - name: systemdutil01
+          image: 'cp.icr.io/cp/cpd/norootsquash:3.0-amd64'
+          args:
+            - '-option'
+            - restart
+            - '-service'
+            - nfs-idmapd.service
+          resources:
+            requests:
+              cpu: 10m
+          volumeMounts:
+            - name: host-etc
+              mountPath: /host/etc
+            - name: host-log
+              readOnly: true
+              mountPath: /host/var/log
+            - name: host-systemd
+              mountPath: /run/systemd
+            - name: host-sys
+              mountPath: /host/sys
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      hostIPC: true
+      volumes:
+        - name: host-etc
+          hostPath:
+            path: /etc
+            type: ''
+        - name: host-log
+          hostPath:
+            path: /var/log
+            type: ''
+        - name: host-systemd
+          hostPath:
+            path: /run/systemd
+            type: ''
+        - name: host-sys
+          hostPath:
+            path: /sys
+            type: ''
+      dnsPolicy: ClusterFirst
+      tolerations:
+        - operator: Exists
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+  revisionHistoryLimit: 10

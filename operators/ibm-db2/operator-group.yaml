@@ -1,0 +1,12 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: db2uoperatorgroup
+  annotations:
+    argocd.argoproj.io/sync-wave: "240"
+  namespace: db2
+  annotations:
+    argocd.argoproj.io/sync-wave: "115"
+spec:
+  targetNamespaces:
+    - db2
