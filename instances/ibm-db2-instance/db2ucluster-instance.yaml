@@ -1,0 +1,73 @@
+apiVersion: db2u.databases.ibm.com/v1
+kind: Db2uCluster
+metadata:
+  name: db2-cluster-cp4ba
+  argocd.argoproj.io/sync-wave: "270"
+  namespace: db2
+spec:
+  account:
+    imagePullSecrets:
+      - ibm-entitlement-key
+    privileged: true
+  addOns:
+    graph: {}
+    qrep:
+      infraHost: xxx.ibm.com
+      infraIP: x.x.x.x
+      license: {}
+    rest: {}
+  environment:
+    database:
+      name: bludb
+    dbType: db2oltp
+    instance:
+      password: '[secure]'
+      registry:
+        DB2_4K_DEVICE_SUPPORT: 'ON'
+    ldap:
+      blueAdminPassword: '[secure]'
+      enabled: true
+      password: '[secure]'
+    mln:
+      total: 1
+  license:
+    accept: true
+  podConfig:
+    db2u:
+      resource:
+        db2u:
+          limits:
+            cpu: '8'
+            memory: 16Gi
+          requests:
+            cpu: '2'
+            memory: 4Gi
+  size: 1
+  storage:
+    - name: meta
+      spec:
+        accessModes:
+          - ReadWriteMany
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: ibmc-file-gold-gid
+      type: create
+    - name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 100Gi
+        storageClassName: ibmc-file-gold-gid
+      type: create
+  version: 11.5.7.0-cn5
+status:
+  conditions:
+    - lastTransitionTime: '2022-10-10T13:22:49Z'
+      status: OK
+      type: FormationStatus
+  maintenanceState: None
+  state: Ready
+  version: 11.5.7.0-cn5
