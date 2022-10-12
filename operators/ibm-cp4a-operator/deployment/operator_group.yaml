@@ -4,7 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "220"
   name: ibm-cp4a-operator-catalog-group
-  namespace: cp4a-gitops
+  namespace: cp4ab
 spec:
   targetNamespaces:
-  - cp4a-gitops
+  - cp4ab
