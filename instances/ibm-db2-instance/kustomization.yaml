@@ -1,5 +1,5 @@
 resources:
-- ./operator-group.yaml
+# - ./operator-group.yaml
 - ./db2u-scc.yaml
 - ./norootsquash.yaml
 - ./db2ucluster-instance.yaml
