@@ -1,6 +1,6 @@
 resources:
 # - db2/operator-group.yaml
-- db2/db2u-scc.yaml
+# - db2/db2u-scc.yaml
 - db2/norootsquash.yaml
 - db2/db2ucluster-instance.yaml
 - db2/db2-role.yaml
