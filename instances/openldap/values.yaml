@@ -1,44 +1,129 @@
-service-account:
-  name: openldap
-  create: false
-  sccs: ["anyuid"]
+replicaCount: 1
+env:
+  LDAP_ORGANISATION: "CP"
+  LDAP_DOMAIN: "cp"
+adminPassword: '${LDAP_USER_PASSWORD}'
+configPassword: '${LDAP_USER_PASSWORD}'
+customLdifFiles:
+  01-default-users.ldif: |-
+    # Units
+    dn: ou=Users,dc=cp
+    objectClass: organizationalUnit
+    ou: Users
 
-openldap:
-  OpenLdap:
-    Image: "docker.io/osixia/openldap"
-    ImageTag: "1.1.10"
-    ImagePullPolicy: "Always"
-    Component: "openldap"
+    dn: ou=Groups,dc=cp
+    objectClass: organizationalUnit
+    ou: Groups
 
-    InitImage: "docker.io/busybox"
-    InitImageTag: "1.30.1"
-    InitImagePullPolicy: "Always"
+    # Users
+    dn: uid=cpadmin,ou=Users,dc=cp
+    objectClass: inetOrgPerson
+    objectClass: top
+    cn: cpadmin
+    sn: cpadmin
+    uid: cpadmin
+    mail: cpadmin@cp.local
+    userpassword:: ${LDAP_USER_PASSWORD_ENCODED}
+    employeeType: admin
 
-    Replicas: 1
+    dn: uid=cpadmin1,ou=Users,dc=cp
+    objectClass: inetOrgPerson
+    objectClass: top
+    cn: cpadmin1
+    sn: cpadmin1
+    uid: cpadmin1
+    mail: cpadmin1@cp.local
+    userpassword:: ${LDAP_USER_PASSWORD_ENCODED}
+    employeeType: admin
 
-    Cpu: "512m"
-    Memory: "200Mi"
+    dn: uid=cpadmin2,ou=Users,dc=cp
+    objectClass: inetOrgPerson
+    objectClass: top
+    cn: cpadmin2
+    sn: cpadmin2
+    uid: cpadmin2
+    mail: cpadmin2@cp.local
+    userpassword:: ${LDAP_USER_PASSWORD_ENCODED}
+    employeeType: admin
 
-    Domain: "local.io"
-    AdminPassword: "admin"
-    Https: "false"
-    SeedUsers:
-      usergroup: "users"
-      userlist: "user1,user2,user3,user4"
-      initialPassword: "redhat"
+    dn: uid=cpuser,ou=Users,dc=cp
+    objectClass: inetOrgPerson
+    objectClass: top
+    cn: cpuser
+    sn: cpuser
+    uid: cpuser
+    mail: cpuser@cp.local
+    userpassword:: ${LDAP_USER_PASSWORD_ENCODED}
 
-  PhpLdapAdmin:
-    Image: "docker.io/osixia/phpldapadmin"
-    ImageTag: "0.7.0"
-    ImagePullPolicy: "Always"
-    Component: "phpadmin"
+    dn: uid=cpuser1,ou=Users,dc=cp
+    objectClass: inetOrgPerson
+    objectClass: top
+    cn: cpuser1
+    sn: cpuser1
+    uid: cpuser1
+    mail: cpuser1@cp.local
+    userpassword:: ${LDAP_USER_PASSWORD_ENCODED}
 
-    Replicas: 1
+    dn: uid=cpuser2,ou=Users,dc=cp
+    objectClass: inetOrgPerson
+    objectClass: top
+    cn: cpuser2
+    sn: cpuser2
+    uid: cpuser2
+    mail: cpuser2@cp.local
+    userpassword:: ${LDAP_USER_PASSWORD_ENCODED}
 
-    NodePort: 31080
+    # Groups
+    dn: cn=cpadmins,ou=Groups,dc=cp
+    objectClass: groupOfNames
+    objectClass: top
+    cn: cpadmins
+    member: uid=cpadmin,ou=Users,dc=cp
+    member: uid=cpadmin1,ou=Users,dc=cp
+    member: uid=cpadmin2,ou=Users,dc=cp
 
-    Cpu: "512m"
-    Memory: "200Mi"
+    dn: cn=cpusers,ou=Groups,dc=cp
+    objectClass: groupOfNames
+    objectClass: top
+    cn: cpusers
+    member: uid=cpadmin,ou=Users,dc=cp
+    member: uid=cpadmin1,ou=Users,dc=cp
+    member: uid=cpadmin2,ou=Users,dc=cp
+    member: uid=cpuser,ou=Users,dc=cp
+    member: uid=cpuser1,ou=Users,dc=cp
+    member: uid=cpuser2,ou=Users,dc=cp
 
-route:
+    dn: cn=cpusers1,ou=Groups,dc=cp
+    objectClass: groupOfNames
+    objectClass: top
+    cn: cpusers1
+    member: uid=cpuser,ou=Users,dc=cp
+    member: uid=cpuser1,ou=Users,dc=cp
+    member: uid=cpuser2,ou=Users,dc=cp
+replication:
+  enabled: false
+persistence:
   enabled: true
+  accessModes:
+    - ReadWriteMany
+  size: 8Gi
+  storageClass: "${CP_FILE_STORAGE}"
+livenessProbe:
+  initialDelaySeconds: 60
+readinessProbe:
+  initialDelaySeconds: 60
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+ltb-passwd:
+  enabled: false
+phpldapadmin:
+  enabled: true
+  ingress:
+    enabled: false
+  env:
+    PHPLDAPADMIN_LDAP_HOSTS: "openldap-openldap-stack-ha.openldap.svc.cluster.local"
