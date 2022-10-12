@@ -2,13 +2,18 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
-    olm.skipRange: '>=1.0.11 <2.0.0'
+    olm.skipRange: '>=1.0.11 <2.2.0'
+    cloudpakId: eb9998dcc5d24e3eb5b6fb488f750fe2
     operators.operatorframework.io/builder: operator-sdk-v1.14.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     certified: 'false'
-    olm.targetNamespaces: db2
+    olm.targetNamespaces: ''
+    operatorframework.io/properties: >-
+      {"properties":[{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"Formation","version":"v1"}},{"type":"olm.package","value":{"packageName":"db2u-operator","version":"2.2.0"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"BigSQL","version":"v1alpha1"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"Db2uCluster","version":"v1"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"Db2uHadr","version":"v1alpha1"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"Db2uHelmMigration","version":"v1alpha1"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"FormationLock","version":"v1"}}]}
     productVersion: 11.5.7.0
-    productID: 5737-K73
+    productID: 7f8ef284fc874e1f8e66ac8664d973a8
+    cloudpakName: IBM Cloud Pak for Data
+    productChargedContainers: All
     alm-examples: |-
       [
         {
@@ -50,27 +55,133 @@ metadata:
                 "type": "create"
               }
             ],
-            "version": "11.5.7.0-cn5"
+            "version": "11.5.7.0-cn6"
           }
         }
       ]
     capabilities: Seamless Upgrades
-    olm.operatorNamespace: tools
-    productName: IBM Db2U Operator
+    olm.operatorNamespace: openshift-operators
+    productName: IBM Db2U
     containerImage: >-
-      icr.io/cpopen/db2u-operator@sha256:e15b6ad411f3246f767c7c49158b2aafb88550b151962b8881691b9b18509a60
+      icr.io/cpopen/db2u-operator@sha256:a2c43d2ac1b4b479d32cc3b4caaea53749c2f07c493565c2e3b8137af30fabf2
     operators.operatorframework.io/internal-objects: >-
       ["formationlocks.db2u.databases.ibm.com",
       "formations.db2u.databases.ibm.com", "bigsqls.db2u.databases.ibm.com",
       "db2uhadrs.db2u.databases.ibm.com",
       "db2uhelmmigrations.db2u.databases.ibm.com"]
-    createdAt: '2022-06-14 18:17:26.685778'
+    createdAt: '2022-09-20 19:47:50.881488'
     categories: Database
     description: The IBM® Db2U Operator allows to deploy IBM Db2
-    olm.operatorGroup: operatorgroup
-    productMetric: VIRTUAL_PROCESSOR_CORE
-  name: db2u-operator.v2.0.0
-  namespace: tools
+    olm.operatorGroup: global-operators
+    productMetric: FREE
+  resourceVersion: '711524'
+  name: db2u-operator.v2.2.0
+  uid: 0fb07ed9-a719-4a29-b020-19c494b6ed40
+  creationTimestamp: '2022-10-12T04:24:00Z'
+  generation: 1
+  managedFields:
+    - apiVersion: operators.coreos.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:cloudpakName': {}
+            'f:operators.operatorframework.io/internal-objects': {}
+            'f:productName': {}
+            'f:createdAt': {}
+            'f:productChargedContainers': {}
+            'f:alm-examples': {}
+            'f:description': {}
+            'f:capabilities': {}
+            'f:productMetric': {}
+            'f:olm.skipRange': {}
+            .: {}
+            'f:containerImage': {}
+            'f:categories': {}
+            'f:operators.operatorframework.io/project_layout': {}
+            'f:certified': {}
+            'f:operatorframework.io/properties': {}
+            'f:cloudpakId': {}
+            'f:productID': {}
+            'f:operators.operatorframework.io/builder': {}
+            'f:productVersion': {}
+          'f:labels':
+            .: {}
+            'f:operatorframework.io/arch.amd64': {}
+            'f:operatorframework.io/arch.ppc64le': {}
+            'f:operatorframework.io/arch.s390x': {}
+            'f:operatorframework.io/os.linux': {}
+        'f:spec':
+          'f:version': {}
+          'f:maturity': {}
+          'f:provider':
+            .: {}
+            'f:name': {}
+          'f:links': {}
+          'f:install':
+            .: {}
+            'f:spec':
+              .: {}
+              'f:clusterPermissions': {}
+              'f:deployments': {}
+              'f:permissions': {}
+            'f:strategy': {}
+          'f:maintainers': {}
+          'f:description': {}
+          'f:installModes': {}
+          'f:minKubeVersion': {}
+          'f:icon': {}
+          'f:customresourcedefinitions':
+            .: {}
+            'f:owned': {}
+          .: {}
+          'f:relatedImages': {}
+          'f:cleanup':
+            .: {}
+            'f:enabled': {}
+          'f:apiservicedefinitions': {}
+          'f:displayName': {}
+          'f:keywords': {}
+      manager: catalog
+      operation: Update
+      time: '2022-10-12T04:24:00Z'
+    - apiVersion: operators.coreos.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:lastUpdateTime': {}
+          'f:requirementStatus': {}
+          'f:phase': {}
+          'f:lastTransitionTime': {}
+          'f:conditions': {}
+          .: {}
+          'f:cleanup': {}
+          'f:message': {}
+          'f:reason': {}
+      manager: olm
+      operation: Update
+      subresource: status
+      time: '2022-10-12T04:24:00Z'
+    - apiVersion: operators.coreos.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:olm.operatorGroup': {}
+            'f:olm.operatorNamespace': {}
+            'f:olm.targetNamespaces': {}
+          'f:labels':
+            'f:operators.coreos.com/db2u-operator.openshift-operators': {}
+      manager: olm
+      operation: Update
+      time: '2022-10-12T04:24:03Z'
+  namespace: openshift-operators
+  labels:
+    operatorframework.io/arch.amd64: supported
+    operatorframework.io/arch.ppc64le: supported
+    operatorframework.io/arch.s390x: supported
+    operatorframework.io/os.linux: supported
+    operators.coreos.com/db2u-operator.openshift-operators: ''
 spec:
   customresourcedefinitions:
     owned:
@@ -262,7 +373,7 @@ spec:
         version: v1
   relatedImages:
     - image: >-
-        icr.io/cpopen/db2u-operator@sha256:e15b6ad411f3246f767c7c49158b2aafb88550b151962b8881691b9b18509a60
+        icr.io/cpopen/db2u-operator@sha256:a2c43d2ac1b4b479d32cc3b4caaea53749c2f07c493565c2e3b8137af30fabf2
       name: db2u-operator
   cleanup:
     enabled: false
@@ -290,7 +401,7 @@ spec:
       type: MultiNamespace
     - supported: true
       type: AllNamespaces
-  version: 2.0.0
+  version: 2.2.0
   icon:
     - base64data: >-
         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
@@ -444,7 +555,7 @@ spec:
                       - containerPort: 9443
                         protocol: TCP
                     image: >-
-                      icr.io/cpopen/db2u-operator@sha256:e15b6ad411f3246f767c7c49158b2aafb88550b151962b8881691b9b18509a60
+                      icr.io/cpopen/db2u-operator@sha256:a2c43d2ac1b4b479d32cc3b4caaea53749c2f07c493565c2e3b8137af30fabf2
                     args:
                       - '--enable-leader-election'
                       - '--zap-log-level=debug'
@@ -1342,7 +1453,7 @@ spec:
         ```bash
         export NS=<Namespace of target installation on OpenShift cluster>
         export CASE_NAME=ibm-db2uoperator
-        export CASE_VERSION=4.5.0
+        export CASE_VERSION=4.5.3
         export CASE_ARCHIVE=${CASE_NAME}-${CASE_VERSION}.tgz
         export OFFLINEDIR=/tmp/cases
         export OFFLINECASE=${OFFLINEDIR}/${CASE_NAME}
@@ -1395,9 +1506,9 @@ spec:
         $ ls ${OFFLINEDIR}
         total 128K
         drwxr-xr-x 2 root root    6 Jan 20 11:10 charts/
-        -rw-r--r-- 1 root root 116K Jan 20 11:10 ibm-db2uoperator-4.5.0.tgz
-        -rw-r--r-- 1 root root   32 Jan 20 11:10 ibm-db2uoperator-4.5.0-charts.csv
-        -rw-r--r-- 1 root root 5.2K Jan 20 11:10 ibm-db2uoperator-4.5.0-images.csv
+        -rw-r--r-- 1 root root 116K Jan 20 11:10 ibm-db2uoperator-4.5.3.tgz
+        -rw-r--r-- 1 root root   32 Jan 20 11:10 ibm-db2uoperator-4.5.3-charts.csv
+        -rw-r--r-- 1 root root 5.2K Jan 20 11:10 ibm-db2uoperator-4.5.3-images.csv
         ```
 
     * Extract the CASE
@@ -1563,7 +1674,7 @@ spec:
         ```bash
         export NS=<Namespace of target installation on OpenShift cluster>
         export CASE_NAME=ibm-db2uoperator
-        export CASE_VERSION=4.5.0
+        export CASE_VERSION=4.5.3
         export CASE_ARCHIVE=${CASE_NAME}-${CASE_VERSION}.tgz
         export OFFLINEDIR=/tmp/cases
         export OFFLINECASE=${OFFLINEDIR}/${CASE_NAME}
@@ -1616,9 +1727,9 @@ spec:
         $ ls ${OFFLINEDIR}
         total 128K
         drwxr-xr-x 2 root root    6 Jan 20 11:10 charts/
-        -rw-r--r-- 1 root root 116K Jan 20 11:10 ibm-db2uoperator-4.5.0.tgz
-        -rw-r--r-- 1 root root   32 Jan 20 11:10 ibm-db2uoperator-4.5.0-charts.csv
-        -rw-r--r-- 1 root root 5.2K Jan 20 11:10 ibm-db2uoperator-4.5.0-images.csv
+        -rw-r--r-- 1 root root 116K Jan 20 11:10 ibm-db2uoperator-4.5.3.tgz
+        -rw-r--r-- 1 root root   32 Jan 20 11:10 ibm-db2uoperator-4.5.3-charts.csv
+        -rw-r--r-- 1 root root 5.2K Jan 20 11:10 ibm-db2uoperator-4.5.3-images.csv
         ```
 
     * Extract the CASE
@@ -1644,7 +1755,7 @@ spec:
         ```bash
         export NS=<Namespace of target installation on OpenShift cluster>
         export CASE_NAME=ibm-db2uoperator
-        export CASE_VERSION=4.5.0
+        export CASE_VERSION=4.5.3
         export CASE_ARCHIVE=${CASE_NAME}-${CASE_VERSION}.tgz
         export OFFLINEDIR=/tmp/cases
         export OFFLINECASE=${OFFLINEDIR}/${CASE_NAME}
@@ -1773,7 +1884,7 @@ spec:
         ```bash
         export NS=<Namespace of target installation on OpenShift cluster>
         export CASE_NAME=ibm-db2uoperator
-        export CASE_VERSION=4.5.0
+        export CASE_VERSION=4.5.3
         export CASE_ARCHIVE=${CASE_NAME}-${CASE_VERSION}.tgz
         export OFFLINEDIR=/tmp/cases
         export OFFLINECASE=${OFFLINEDIR}/${CASE_NAME}
@@ -2183,3 +2294,380 @@ spec:
 
 
     None
+status:
+  cleanup: {}
+  conditions:
+    - lastTransitionTime: '2022-10-12T04:24:00Z'
+      lastUpdateTime: '2022-10-12T04:24:00Z'
+      message: requirements not yet checked
+      phase: Pending
+      reason: RequirementsUnknown
+    - lastTransitionTime: '2022-10-12T04:24:00Z'
+      lastUpdateTime: '2022-10-12T04:24:00Z'
+      message: one or more requirements couldn't be found
+      phase: Pending
+      reason: RequirementsNotMet
+    - lastTransitionTime: '2022-10-12T04:24:03Z'
+      lastUpdateTime: '2022-10-12T04:24:03Z'
+      message: 'all requirements found, attempting install'
+      phase: InstallReady
+      reason: AllRequirementsMet
+    - lastTransitionTime: '2022-10-12T04:24:03Z'
+      lastUpdateTime: '2022-10-12T04:24:03Z'
+      message: waiting for install components to report healthy
+      phase: Installing
+      reason: InstallSucceeded
+    - lastTransitionTime: '2022-10-12T04:24:03Z'
+      lastUpdateTime: '2022-10-12T04:24:03Z'
+      message: >-
+        installing: waiting for deployment db2u-operator-manager to become
+        ready: waiting for spec update of deployment "db2u-operator-manager" to
+        be observed...
+      phase: Installing
+      reason: InstallWaiting
+    - lastTransitionTime: '2022-10-12T04:24:24Z'
+      lastUpdateTime: '2022-10-12T04:24:24Z'
+      message: install strategy completed with no errors
+      phase: Succeeded
+      reason: InstallSucceeded
+  lastTransitionTime: '2022-10-12T04:24:24Z'
+  lastUpdateTime: '2022-10-12T04:24:24Z'
+  message: install strategy completed with no errors
+  phase: Succeeded
+  reason: InstallSucceeded
+  requirementStatus:
+    - group: operators.coreos.com
+      kind: ClusterServiceVersion
+      message: CSV minKubeVersion (1.19.0) less than server version (v1.23.5+012e945)
+      name: db2u-operator.v2.2.0
+      status: Present
+      version: v1alpha1
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      message: CRD is present and Established condition is true
+      name: bigsqls.db2u.databases.ibm.com
+      status: Present
+      uuid: cba44198-8ca8-4de6-84c3-c40c77895206
+      version: v1
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      message: CRD is present and Established condition is true
+      name: db2uclusters.db2u.databases.ibm.com
+      status: Present
+      uuid: 5f9152a3-64b7-47c4-ad96-5b762349fedd
+      version: v1
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      message: CRD is present and Established condition is true
+      name: db2uhadrs.db2u.databases.ibm.com
+      status: Present
+      uuid: d23ab664-b2ba-412e-ab97-4db68f4fec98
+      version: v1
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      message: CRD is present and Established condition is true
+      name: db2uhelmmigrations.db2u.databases.ibm.com
+      status: Present
+      uuid: ac1f6ba4-d01c-4407-8bcb-aa88635bbb21
+      version: v1
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      message: CRD is present and Established condition is true
+      name: formationlocks.db2u.databases.ibm.com
+      status: Present
+      uuid: 3ce994c6-767b-4930-b52e-13e43452d6d4
+      version: v1
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      message: CRD is present and Established condition is true
+      name: formations.db2u.databases.ibm.com
+      status: Present
+      uuid: 66665f61-a024-40e0-86e9-23256f824eac
+      version: v1
+    - dependents:
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["configmaps","configmaps/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["endpoints","endpoints/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["events","events/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["persistentvolumeclaims","persistentvolumeclaims/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["pods","pods/exec","pods/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["secrets","secrets/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["serviceaccounts","serviceaccounts/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["services","services/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["apps"],"resources":["deployments","deployments/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get","list"],"apiGroups":["apps"],"resources":["replicasets","replicasets/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["apps"],"resources":["statefulsets","statefulsets/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["apps.foundationdb.org"],"resources":["foundationdbclusters"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["apps.foundationdb.org"],"resources":["foundationdbclusters/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["batch"],"resources":["cronjobs","cronjobs/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["batch"],"resources":["jobs","jobs/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","get","list","update"],"apiGroups":["coordination.k8s.io"],"resources":["leases"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["backups","buckets","formationlocks","formations","recipes"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["bigsqls"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get","patch","update"],"apiGroups":["db2u.databases.ibm.com"],"resources":["bigsqls/status"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["db2uclusters"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["db2uclusters/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get","patch","update"],"apiGroups":["db2u.databases.ibm.com"],"resources":["db2uclusters/status"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["db2uhadrs"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get","patch","update"],"apiGroups":["db2u.databases.ibm.com"],"resources":["db2uhadrs/status"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["db2uhelmmigrations"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get","patch","update"],"apiGroups":["db2u.databases.ibm.com"],"resources":["db2uhelmmigrations/status"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["formations/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["formations/status"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["objectstorages"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["sirius"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["db2u.databases.ibm.com"],"resources":["sirius/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get","patch","update"],"apiGroups":["db2u.databases.ibm.com"],"resources":["sirius/status"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["networking.k8s.io"],"resources":["networkpolicies","networkpolicies/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["rbac.authorization.k8s.io"],"resources":["rolebindings","rolebindings/finalizers","roles","roles/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            cluster
+            rule:{"verbs":["get","list","patch","update","watch"],"apiGroups":[""],"resources":["namespaces"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            cluster
+            rule:{"verbs":["list","watch"],"apiGroups":[""],"resources":["persistentvolumes"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            cluster
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":[""],"resources":["persistentvolumes","persistentvolumes/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            cluster
+            rule:{"verbs":["create","get","list","patch","update"],"apiGroups":["apiextensions.k8s.io"],"resources":["customresourcedefinitions"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            cluster
+            rule:{"verbs":["create","delete","get","list","patch","update","use","watch"],"apiGroups":["policy"],"resources":["podsecuritypolicies","podsecuritypolicies/finalizers"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            cluster
+            rule:{"verbs":["create","delete","get","list","patch","update","watch"],"apiGroups":["security.openshift.io"],"resources":["securitycontextconstraints","securitycontextconstraints/finalizers"]}
+          status: Satisfied
+          version: v1
+      group: ''
+      kind: ServiceAccount
+      message: ''
+      name: db2u-operator
+      status: Present
+      version: v1
