@@ -4,7 +4,7 @@ metadata:
   name: db2-cluster-cp4ba
   annotations:
     argocd.argoproj.io/sync-wave: "270"
-  namespace: db2
+  namespace: tools
 spec:
   account:
     imagePullSecrets:
