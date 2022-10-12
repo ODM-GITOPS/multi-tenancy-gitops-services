@@ -1,37 +1,69 @@
-kind: SecurityContextConstraints
-apiVersion: v1
-apiGroup: security.openshift.io
-metadata:
-    name: db2u-scc
+allowHostPorts: false
+priority: 10
+requiredDropCapabilities: null
+allowPrivilegedContainer: true
+runAsUser:
+  type: RunAsAny
+users: []
 allowHostDirVolumePlugin: false
 allowHostIPC: false
-allowHostNetwork: false
-allowHostPID: false
-allowHostPorts: false
-# privileged container is only needed for the init container that sets the Db2 kernel parameters
-allowPrivilegedContainer: true
-allowedCapabilities:
-- "SYS_RESOURCE"
-- "IPC_OWNER"
-- "SYS_NICE"
-- "CHOWN"
-- "DAC_OVERRIDE"
-- "FSETID"
-- "FOWNER"
-- "SETGID"
-- "SETUID"
-- "SETFCAP"
-- "SETPCAP"
-- "SYS_CHROOT"
-- "KILL"
-- "AUDIT_WRITE"
-priority: 10
-runAsUser:
-    type: RunAsAny
 seLinuxContext:
-    type: MustRunAs
+  type: MustRunAs
+readOnlyRootFilesystem: false
+metadata:
+  name: db2u-scc
 fsGroup:
-    type: RunAsAny
+  type: RunAsAny
+groups: []
+kind: SecurityContextConstraints
+defaultAddCapabilities: null
 supplementalGroups:
-    type: RunAsAny
-version: v1
+  type: RunAsAny
+volumes:
+  - awsElasticBlockStore
+  - azureDisk
+  - azureFile
+  - cephFS
+  - cinder
+  - configMap
+  - csi
+  - downwardAPI
+  - emptyDir
+  - ephemeral
+  - fc
+  - flexVolume
+  - flocker
+  - gcePersistentDisk
+  - gitRepo
+  - glusterfs
+  - iscsi
+  - nfs
+  - persistentVolumeClaim
+  - photonPersistentDisk
+  - portworxVolume
+  - projected
+  - quobyte
+  - rbd
+  - scaleIO
+  - secret
+  - storageOS
+  - vsphere
+allowHostPID: false
+allowHostNetwork: false
+allowPrivilegeEscalation: true
+apiVersion: security.openshift.io/v1
+allowedCapabilities:
+  - SYS_RESOURCE
+  - IPC_OWNER
+  - SYS_NICE
+  - CHOWN
+  - DAC_OVERRIDE
+  - FSETID
+  - FOWNER
+  - SETGID
+  - SETUID
+  - SETFCAP
+  - SETPCAP
+  - SYS_CHROOT
+  - KILL
+  - AUDIT_WRITE
