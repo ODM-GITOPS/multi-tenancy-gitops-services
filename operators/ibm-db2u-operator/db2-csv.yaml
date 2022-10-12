@@ -3,15 +3,10 @@ kind: ClusterServiceVersion
 metadata:
   annotations:
     olm.skipRange: '>=1.0.11 <2.2.0'
-    cloudpakId: eb9998dcc5d24e3eb5b6fb488f750fe2
     operators.operatorframework.io/builder: operator-sdk-v1.14.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     certified: 'false'
     olm.targetNamespaces: ''
-    operatorframework.io/properties: >-
-      {"properties":[{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"Formation","version":"v1"}},{"type":"olm.package","value":{"packageName":"db2u-operator","version":"2.2.0"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"BigSQL","version":"v1alpha1"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"Db2uCluster","version":"v1"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"Db2uHadr","version":"v1alpha1"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"Db2uHelmMigration","version":"v1alpha1"}},{"type":"olm.gvk","value":{"group":"db2u.databases.ibm.com","kind":"FormationLock","version":"v1"}}]}
-    productVersion: 11.5.7.0
-    productID: 7f8ef284fc874e1f8e66ac8664d973a8
     cloudpakName: IBM Cloud Pak for Data
     productChargedContainers: All
     alm-examples: |-
